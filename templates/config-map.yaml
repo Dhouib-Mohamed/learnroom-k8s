@@ -3,16 +3,16 @@ kind: ConfigMap
 metadata:
   name: {{ include "learn-room.fullname" . }}-db-config
 data:
-  DB_HOST: "aws-0-eu-central-1.pooler.supabase.com"
-  DB_PORT: "5432"
-  DB_USER: "postgres.svrgvowmtumytoypubvn"
-  DB_PASSWORD: "lerarn-room1"
-  DB_NAME: "postgres"
+  DB_HOST: "{{ .Values.database.host }}"
+  DB_PORT: "{{ .Values.database.port }}"
+  DB_USER: "{{ .Values.database.user }}"
+  DB_PASSWORD: "{{ .Values.database.password }}"
+  DB_NAME: "{{ .Values.database.name }}"
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "learn-room.fullname" . }}-jwt-config
 data:
-  salt: "$2b$10$4SpY2UhZFZFAgqX/GRlWze"
-  JWT_SECRET_KEY: "4ds6b6rgfd465h4ge6dw54hfv6br4dv6vkjdvskwc"
+  salt: "{{ .Values.jwt.salt }}"
+  JWT_SECRET_KEY: "{{ .Values.jwt.secret }}"
