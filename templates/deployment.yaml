@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "learn-room.fullname" . }}-frontend
+spec:
+  replicas: {{ .Values.frontend.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ include "learn-room.name" . }}-frontend
+  template:
+    metadata:
+      labels:
+        app: {{ include "learn-room.name" . }}-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "learn-room.fullname" . }}-backend
+spec:
+    replicas: {{ .Values.backend.deployment.replicas }}
+    selector:
+        matchLabels:
+          app: {{ include "learn-room.name" . }}-backend
+    template:
+        metadata:
+          labels:
+            app: {{ include "learn-room.name" . }}-backend
+        spec:
+          containers:
+            - name: backend
+              image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}
+              ports:
+                - containerPort: 3000
+              envFrom:
+                - configMapRef:
+                    name: {{ include "learn-room.fullname" . }}-db-config
+                - configMapRef:
+                    name: {{ include "learn-room.fullname" . }}-jwt-config
