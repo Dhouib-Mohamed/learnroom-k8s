@@ -17,3 +17,14 @@ backend:
   service:
     type: ClusterIP
     port: 3000
+
+database:
+  host: learnroom-db-host
+  port: 5432
+  name: learnroom
+  user: learnroom-user
+  password: learnroom-pwd
+
+jwt:
+    secret: learnroom-jwt-secret
+    salt: learnroom-jwt-salt
