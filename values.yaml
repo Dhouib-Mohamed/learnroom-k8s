@@ -1,0 +1,19 @@
+frontend:
+  image:
+    repository: nadamankai/learn-room
+    tag: frontend
+  deployment:
+    replicas: 1
+  service:
+    type: ClusterIP
+    port: 80
+
+backend:
+  image:
+    repository: nadamankai/learn-room
+    tag: backend
+  deployment:
+    replicas: 2
+  service:
+    type: ClusterIP
+    port: 3000
