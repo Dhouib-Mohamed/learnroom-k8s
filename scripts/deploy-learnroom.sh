@@ -20,4 +20,9 @@ else
     -n $NAMESPACE $RELEASE_NAME $CHART_FOLDER
 fi
 
+# Wait for the deployment to be ready
+sleep 5
+
+echo "Your LearnRoom frontend is available at: http://localhost:$PORT"
+
 kubectl port-forward -n $NAMESPACE svc/$SERVICE_NAME "$PORT":80

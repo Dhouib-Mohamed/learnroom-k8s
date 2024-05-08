@@ -1,2 +1,6 @@
-1. Get the application URL by running these commands:
+This is the Learn room application
+It is a simple application that allows users to create rooms and join rooms to learn together
+To access to the frontend of the application, you need to run "kubectl port-forward svc/learn-room-frontend 8080:80"
+To access to the backend of the application, you need to run "kubectl port-forward svc/learn-room-backend 3000:3000"
+
 

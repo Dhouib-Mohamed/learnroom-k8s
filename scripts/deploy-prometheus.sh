@@ -22,4 +22,8 @@ else
     -n $NAMESPACE $RELEASE_NAME prometheus-community/prometheus
 fi
 
+sleep 5
+
+echo "Your Prometheus is available at: http://localhost:$PORT"
+
 kubectl -n $NAMESPACE port-forward svc/prometheus-prometheus-node-exporter $PORT:9100
